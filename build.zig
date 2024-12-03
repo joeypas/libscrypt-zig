@@ -2,7 +2,7 @@ const std = @import("std");
 const builtin = @import("builtin");
 
 fn compileScrypt(b: *std.Build, target: std.Build.ResolvedTarget, optimize: std.builtin.OptimizeMode, scrypt: *std.Build.Dependency) !*std.Build.Step.Compile {
-    const libscrypt = b.addSharedLibrary(.{
+    const libscrypt = b.addStaticLibrary(.{
         .name = "scrypt",
         .target = target,
         .optimize = optimize,
