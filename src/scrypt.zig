@@ -1,6 +1,5 @@
 const assert = @import("std").debug.assert;
 const math = @import("std").math;
-const print = @import("std").debug.print;
 /// Backend
 /// *ONLY USE IF YOU KNOW WHAT YOU'RE DOING*
 pub const c = @cImport({
@@ -80,10 +79,10 @@ pub fn cryptoScrypt(passwd: []const u8, salt: []const u8, n: u64, r: u32, p: u32
 }
 
 /// Converts a series of input parameters to a MCF form for storage
-pub fn cryptoMcf(n: u32, r: u32, p: u32, salt: []const u8, _hash: []const u8, mcf: []u8) !void {
+pub fn cryptoMcf(n: u32, r: u32, p: u32, salt: []const u8, hash_: []const u8, mcf: []u8) !void {
     assert(mcf.len >= MCF_LEN);
 
-    const ok = c.libscrypt_mcf(n, r, p, salt.ptr, _hash.ptr, mcf.ptr);
+    const ok = c.libscrypt_mcf(n, r, p, salt.ptr, hash_.ptr, mcf.ptr);
 
     if (ok != 1) return ScryptError.GenFailure;
 }
