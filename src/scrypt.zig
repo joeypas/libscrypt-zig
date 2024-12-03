@@ -4,8 +4,7 @@ const print = @import("std").debug.print;
 /// Backend
 /// *ONLY USE IF YOU KNOW WHAT YOU'RE DOING*
 pub const c = @cImport({
-    @cInclude("/opt/homebrew/opt/libscrypt/include/libscrypt.h");
-    //@cInclude("libscrypt.h");
+    @cInclude("libscrypt.h");
 });
 
 // Error Type
